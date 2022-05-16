@@ -5,8 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extras.DynamicProxy;
+using Business.Abstract;
+using Business.Concrete;
 using Castle.DynamicProxy;
 using Core.Utilities.Interceptors;
+using Core.Utilities.Security.JWT;
+using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 
 namespace Business.DependencyResolvers.Autofac
 {
@@ -14,7 +19,10 @@ namespace Business.DependencyResolvers.Autofac
     {
         protected override void Load(ContainerBuilder builder)
         {
-
+            builder.RegisterType<ClothesManager>().As<IClothesService>();
+            builder.RegisterType<EfClothesDal>().As<IClothesDal>();
+            builder.RegisterType<EfUserDal>().As<IUserDal>();
+            builder.RegisterType<JwtHelper>().As<ITokenHelper>();
 
 
 

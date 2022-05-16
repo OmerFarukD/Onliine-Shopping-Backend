@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Core.Entity.Concrete;
 using Entity.Concrete;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +15,9 @@ namespace DataAccess.Concrete.EntityFramework
         {
             optionsBuilder.UseSqlServer(@"server=(localdb)\MSSQLLocalDB;Database=shopping_db;TRUSTED_CONNECTION=true");
         }
-        public DbSet<Clothes> Clothess { get; set; }
+        public DbSet<Clothes> Clothes { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<OperationClaim> OperationClaims { get; set; }
+        public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
     }
 }

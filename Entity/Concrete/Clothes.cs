@@ -9,7 +9,7 @@ namespace Entity.Concrete
 {
     public class Clothes :IEntity
     {
-        public long id { get; set; }
+        public long Id { get; set; }
         public string ClothesName { get; set; }
         public double UnitPrice { get; set; }
 
