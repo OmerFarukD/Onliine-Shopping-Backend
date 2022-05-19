@@ -12,5 +12,7 @@ namespace Business.Constants
         public static string ClothesAddMessage = "Elbise eklendi.";
         public static string ClothesDeleteMessage = "Elbise silindi";
         public static string ClothesUpdateMessage = "Elbise güncellendi";
+        public static string CategoryUpdatedMessage = "Kategori güncellendi.";
+        public static string CategoryAddedMessage = "Kategori eklendi";
     }
 }

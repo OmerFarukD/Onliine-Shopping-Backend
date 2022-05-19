@@ -23,6 +23,9 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<EfClothesDal>().As<IClothesDal>();
             builder.RegisterType<EfUserDal>().As<IUserDal>();
             builder.RegisterType<JwtHelper>().As<ITokenHelper>();
+            builder.RegisterType<EfCategoryDal>().As<ICategoryDal>();
+            builder.RegisterType<EfColorDal>().As<IColorDal>();
+            builder.RegisterType<CategoryManager>().As<ICategoryService>();
 
 
 
@@ -33,6 +36,7 @@ namespace Business.DependencyResolvers.Autofac
                 {
                     Selector = new AspectInterceptorSelector()
                 }).SingleInstance();
+
         }
     }
 }

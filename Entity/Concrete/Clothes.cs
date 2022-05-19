@@ -10,11 +10,10 @@ namespace Entity.Concrete
     public class Clothes :IEntity
     {
         public long Id { get; set; }
+        public int CategoryId { get; set; }
+        public string ColorId { get; set; }
         public string ClothesName { get; set; }
         public double UnitPrice { get; set; }
-
-        public string Color { get; set; }
-
         public int UnitsInStock { get; set; }
     }
 }

@@ -7,20 +7,19 @@ namespace AngularWeb.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ClothesController : ControllerBase
+    public class CategoriesController : ControllerBase
     {
-        private IClothesService _clothesService;
+        private ICategoryService _categoryService;
 
-        public ClothesController(IClothesService clothesService)
+        public CategoriesController(ICategoryService categoryService)
         {
-            _clothesService = clothesService;
-
+            _categoryService = categoryService;
         }
 
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _clothesService.GetAll();
+            var result = _categoryService.GetAll();
             if (!result.Success)
             {
                 return BadRequest(result.Message);
@@ -30,20 +29,55 @@ namespace AngularWeb.Controllers
         }
 
         [HttpGet("getbyid")]
-        public IActionResult GetById(long id)
+        public IActionResult GetById(int id)
         {
-            var result = _clothesService.GetById(id);
+            var result = _categoryService.GetById(id);
             if (!result.Success)
             {
                 return BadRequest(result.Message);
             }
+
+            return Ok(result);
+        }
+        [HttpGet("getbyname")]
+        public IActionResult GetByName(string name)
+        {
+            var result = _categoryService.GetByName(name);
+            if (!result.Success)
+            {
+                return BadRequest(result.Message);
+            }
+
+            return Ok(result);
+        }
+        [HttpDelete("deletebyid")]
+        public IActionResult DeleteById(int id)
+        {
+            var res = _categoryService.DeleteById(id);
+            if (!res.Success)
+            {
+                return BadRequest(res.Message);
+            }
+
+            return Ok(res);
+        }
+
+        [HttpPost("update")]
+        public IActionResult Update(Category category)
+        {
+            var result = _categoryService.Update(category);
+            if (!result.Success)
+            {
+                return BadRequest(result.Message);
+            }
+
             return Ok(result);
         }
 
         [HttpPost("add")]
-        public IActionResult Add(Clothes clothes)
+        public IActionResult Add(Category category)
         {
-            var result = _clothesService.Add(clothes);
+            var result = _categoryService.Add(category);
             if (!result.Success)
             {
                 return BadRequest(result.Message);
@@ -52,42 +86,8 @@ namespace AngularWeb.Controllers
             return Ok(result);
         }
 
-        [HttpDelete("delete")]
-        public IActionResult Delete(Clothes clothes)
-        {
-            var result = _clothesService.Delete(clothes);
-            if (!result.Success)
-            {
-                return BadRequest(result.Message);
-            }
 
-            return Ok(result);
-        }
 
-        [HttpPatch("update")]
-        public IActionResult Update(Clothes clothes)
-        {
-            var result = _clothesService.Update(clothes);
-            if (!result.Success)
-            {
-                return BadRequest(result.Message);
-            }
-
-            return Ok(result);
-        }
-
-        [HttpGet("getallbystartswith")]
-        public IActionResult GetAllByStartsWith(string pattern)
-        {
-            var result = _clothesService.GetAllByStartsWith(pattern);
-            if (!result.Success)
-            {
-                return BadRequest(result.Message);
-            }
-
-            return Ok(result);
-        }
         
     }
-
 }
