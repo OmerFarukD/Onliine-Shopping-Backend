@@ -15,6 +15,7 @@ namespace Business.Abstract
         IResult Add(Color color);
         IResult DeleteById(int id);
         IResult Update(Color color);
+        IResult TransactionalOperation(Color color);
 
     }
 }

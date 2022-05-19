@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Business.Abstract;
 using Business.Constants;
+using Core.Aspects.Transaction;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entity.Concrete;
@@ -45,6 +46,14 @@ namespace Business.Concrete
         public IResult Update(Color color)
         {
             _colorDal.Update(color);
+            return new SuccessResult(Messages.ColorUpdateMessage);
+        }
+
+        [TransactionScopeAspect]
+        public IResult TransactionalOperation(Color color)
+        {
+            _colorDal.Update(color);
+            _colorDal.Add(color);
             return new SuccessResult(Messages.ColorUpdateMessage);
         }
     }

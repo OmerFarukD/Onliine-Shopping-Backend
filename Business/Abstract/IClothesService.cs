@@ -20,5 +20,7 @@ namespace Business.Abstract
         IDataResult<List<Clothes>> GetAllByStartsWith(string pattern);
 
         IDataResult<Clothes> GetById(long id);
+
+        IResult TransactionalOperation(Clothes clothes);
     }
 }

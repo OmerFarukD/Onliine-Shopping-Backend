@@ -7,6 +7,7 @@ using Business.Abstract;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Caching;
+using Core.Aspects.Transaction;
 using Core.Aspects.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -60,6 +61,14 @@ namespace Business.Concrete
         public IDataResult<Clothes> GetById(long id)
         {
             return new SuccessDataResult<Clothes>(_clothesDal.Get(c => c.Id == id));
+        }
+
+        [TransactionScopeAspect]
+        public IResult TransactionalOperation(Clothes clothes)
+        {
+            _clothesDal.Update(clothes);
+            _clothesDal.Add(clothes);
+            return new SuccessResult(Messages.ClothesUpdateMessage);
         }
     }
 }

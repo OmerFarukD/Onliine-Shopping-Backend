@@ -18,5 +18,6 @@ namespace Business.Abstract
         IResult DeleteById(int id);
         IResult Update(Category category);
         IResult Add(Category category);
+        IResult TransactionalOperation(Category category);
     }
 }
