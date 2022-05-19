@@ -26,7 +26,7 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<EfCategoryDal>().As<ICategoryDal>();
             builder.RegisterType<EfColorDal>().As<IColorDal>();
             builder.RegisterType<CategoryManager>().As<ICategoryService>();
-
+            builder.RegisterType<ColorManager>().As<IColorService>();
 
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
