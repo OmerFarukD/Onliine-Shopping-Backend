@@ -86,8 +86,14 @@ namespace AngularWeb.Controllers
             return Ok(result);
         }
 
+        [HttpPost("transactionscope")]
+        public IActionResult TransactionalOperation(Category category)
+        {
+            return Ok(_categoryService.TransactionalOperation(category));
+        }
 
 
-        
+
+
     }
 }

@@ -76,5 +76,11 @@ namespace AngularWeb.Controllers
 
             return Ok(result);
         }
+
+        [HttpPost("transactionaloperation")]
+        public IActionResult TransactionalOperation(Color color)
+        {
+            return Ok(_colorService.TransactionalOperation(color));
+        }
     }
 }

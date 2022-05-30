@@ -35,6 +35,7 @@ namespace AngularWeb
             {
 
                 services.AddControllers();
+                services.AddCors();
                 var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
                 services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -61,7 +62,6 @@ namespace AngularWeb
                 });
             }
 
-            // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
             public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
             {
                 if (env.IsDevelopment())
@@ -70,11 +70,11 @@ namespace AngularWeb
                     app.UseSwagger();
                     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApi v1"));
                 }
-
+                
+                app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader()); 
                 app.UseHttpsRedirection();
-
                 app.UseRouting();
-               // app.UseAuthentication();
+                app.UseAuthentication();
                 app.UseAuthorization();
 
                 app.UseEndpoints(endpoints =>

@@ -19,14 +19,17 @@ namespace Business.DependencyResolvers.Autofac
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<ClothesManager>().As<IClothesService>();
-            builder.RegisterType<EfClothesDal>().As<IClothesDal>();
             builder.RegisterType<EfUserDal>().As<IUserDal>();
             builder.RegisterType<JwtHelper>().As<ITokenHelper>();
-            builder.RegisterType<EfCategoryDal>().As<ICategoryDal>();
-            builder.RegisterType<EfColorDal>().As<IColorDal>();
-            builder.RegisterType<CategoryManager>().As<ICategoryService>();
+            builder.RegisterType<EfCategoryDal>().As<ICategoryDal>().SingleInstance();
+            builder.RegisterType<EfColorDal>().As<IColorDal>().SingleInstance();
+            builder.RegisterType<CategoryManager>().As<ICategoryService>().SingleInstance();
             builder.RegisterType<ColorManager>().As<IColorService>();
+            builder.RegisterType<AuthManager>().As<IAuthService>();
+            builder.RegisterType<EfProductDal>().As<IProductDal>().SingleInstance();
+            builder.RegisterType<UserManager>().As<IUserService>();
+            builder.RegisterType<ImageManager>().As<IImageService>().SingleInstance();
+
 
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();

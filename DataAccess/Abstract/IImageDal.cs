@@ -8,8 +8,7 @@ using Entity.Concrete;
 
 namespace DataAccess.Abstract
 {
-    public interface IClothesDal :IEntityDal<Clothes>
+    public interface IImageDal :IEntityDal<Image>
     {
-
     }
 }
